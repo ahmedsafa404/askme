@@ -9,6 +9,7 @@ require_once ("../../vendor/autoload.php");
 use Askme\Askme\Askme;
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +49,15 @@ $userID = $_SESSION['user']['id'];
 $userInfo = new Askme();
 $info = $userInfo->userInfo($userID);
 
+$askedQuestion = new Askme();
+$getAsked_Question = $askedQuestion->user_asked_Question($userID);
 
+$answeredQuestion = new Askme();
+$getAnswered_Question = $answeredQuestion->user_answered();
+
+
+$Question = new Askme();
+$myQuestion = $Question->myAskedQuestion($userID);
 
 
 ?>
@@ -73,17 +82,15 @@ $info = $userInfo->userInfo($userID);
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-               <li><a href="../../index.php"><strong>Go To Home</strong></a></li>
-                
+
+                <li><a href="../../index.php"><strong>Go to Home</strong></a> </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo strtoupper($_SESSION['user']['firstname']." ".$_SESSION['user']['lastname']);?> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo $info['profile_pic']; ?>" alt="Profile Picture" class="img-circle" height="22" width="26"> <strong><?php echo strtoupper($_SESSION['user']['firstname']." ".$_SESSION['user']['lastname']);?></strong> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="profile.php"><img src="<?php echo $info['profile_pic']; ?>" alt="Profile Picture" class="img-circle" height="22" width="26"> Profile</a>
                         </li>
-						<li>
-                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
+
                         <li class="divider"></li>
                         <li>
                             <a href="../../logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
@@ -96,6 +103,11 @@ $info = $userInfo->userInfo($userID);
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
                         <a href="index.php">
+                            <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+                            My Activity</a>
+                    </li>
+                    <li class="">
+                        <a href="profile.php">
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
                         User Profile</a>
                     </li>
@@ -104,11 +116,7 @@ $info = $userInfo->userInfo($userID);
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                             Questions</a>
                     </li>
-                    <li class="">
-                        <a href="activity.php">
-                            <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
-                            My Activity</a>
-                    </li>
+
 
                 </ul>
             </div>
@@ -119,189 +127,97 @@ $info = $userInfo->userInfo($userID);
 
             <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            <?php echo $_SESSION['user']['firstname']." ".$_SESSION['user']['lastname']."'s";?>
-                             <small>Profile</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile
-                            </li>
-                        </ol>
-                    </div>
-                </div>
-                <!-- /.row -->
+            <div class="col-md-12" style="font-family: "Arial Black", arial-black">
+                <font color="#008b8b" size="6"><strong>User Activity</strong></font>
+            </div>
+            <div class="col-md-12">
+                <hr>
+            </div>
+
+
+<!--         User Activity       -->
 
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="alert alert-info alert-dismissable">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <i class="fa fa-info-circle"></i>  <strong>Welcome <?php echo $_SESSION['user']['firstname']." ".$_SESSION['user']['lastname'];?></strong>
+
+                    <div class="col-md-4">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-question-circle fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-left">
+                                        <div class="huge"><?php echo $getAsked_Question['Ask'];?></div>
+                                        <div>Total Asked Question!</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-comments fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-left">
+                                        <div class="huge"><?php echo $getAnswered_Question['Answer'];?></div>
+                                        <div>Total Answered!</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-trophy fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-left">
+                                        <div class="huge"><?php echo $info['point'];?></div>
+                                        <div>Total Point!</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-12">
+
+                    <div class="col-md-12">
+                        <h3><strong>My Asked Question</strong></h3>
+                        <hr>
+                        <div class="col-md-8">
+
+                            <?php
+
+                            foreach ($myQuestion as $question => $item)
+                            { ?>
+
+                                <h4><strong><?php echo $item['question'];?></strong></h4>
+                                <p><?php $length = strlen($item['description']); echo substr($item['description'],0,$length/2);?></p>
+                                <a href=../../question.php?id=<?php echo htmlspecialchars(htmlentities(stripslashes(strip_tags($item['id']))));?>>See More</a>
+                                <hr>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
+<!--        End User Activity -->
 
-                <!--User Profile-->
-
-                <div class="row">
-                    <div class="col-lg-12">
-
-                        <div class="col-lg-12 " >
-   
-
-                                  <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                      <h3 class="panel-title"></h3>
-                                    </div>
-                                    <div class="panel-body">
-                                      <div class="row">
-                                        <div class="col-md-3 col-lg-3 " align="center">
-                                            <img src="<?php echo $info['profile_pic']; ?>" alt="Profile Picture" class="img-circle" height="200" width="220">
-                                            <br>
-                                            <a class="cd-upload" href="#" data-toggle="modal" data-target="#upload">Upload Photo</a>
-                                        </div>
-                                        
-                                        <div class=" col-md-9 col-lg-9 "> 
-                                          <table class="table table-user-information">
-                                            <tbody>
-                                              <tr>
-                                                <td>Name:</td>
-                                                <td><?php echo $info['firstname']." ".$info['lastname'];?></td>
-                                              </tr>
-
-                                                <tr>
-                                                <td>Location</td>
-                                                <td><?php echo $info['location'];?></td>
-                                              </tr>
-                                              <tr>
-                                                <td>Phone Number</td>
-                                                <td><?php echo $info['phone'];?></td>
-                                              </tr>  
-                                                   
-                                              </tr>
-                                             
-                                            </tbody>
-                                          </table>
-                                          
-                                        </div>
-
-                                      </div>
-                                    </div>
-
-                                     <div class="panel-footer">
-                                            
-                                            <span class="pull-right">
-                                                <a class="btn btn-sm btn-warning" href="#" data-original-title="Edit this user" data-toggle="modal" data-target="#edit" type="button" ><i class="glyphicon glyphicon-edit"></i></a>
-
-                                            </span>
-
-                                         <!--Modal for Edit User-->
-
-                                         <div class="modal fade" id="edit" role="dialog">
-                                             <div class="modal-dialog">
-
-                                                 <!-- Modal content-->
-                                                 <div class="modal-content">
-                                                     <div class="modal-header">
-                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                         <h4 class="modal-title"><b>Update Profile</b></h4>
-                                                     </div>
-                                                     <div class="col-md-8">
-                                                         <form action="edit.php" method="post" id="edit">
-                                                             <div class="form-group">
-                                                                 <label for="firstname">Firstname</label>
-                                                                 <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $info['firstname'];?>">
-                                                             </div>
-                                                             <div class="form-group">
-                                                                 <label for="lastname">Lastname</label>
-                                                                 <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $info['lastname'];?>">
-                                                             </div>
-
-                                                             <div class="form-group">
-                                                                 <label for="location">Location</label>
-                                                                 <input type="text" class="form-control" id="location" name="location" value="<?php echo $info['location'];?>">
-                                                             </div>
-                                                             <div class="form-group">
-                                                                 <label for="email">Email</label>
-                                                                 <input type="email" class="form-control" id="email" name="email" value="<?php echo $info['email'];?>">
-                                                             </div>
-                                                             <div class="form-group">
-                                                                 <label for="phone">Phone No.</label>
-                                                                 <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $info['phone'];?>">
-                                                             </div>
-
-                                                             <button type="submit" class="btn-success" id="update">Update</button>
-                                                             <input type="hidden" name="csrf" value="<?php ?>">
-                                                             <input type="hidden" name="userid" value="<?php echo $_SESSION['user']['id'];?>">
-                                                         </form>
-                                                     </div>
-
-                                                     <div class="modal-footer">
-
-                                                     </div>
-                                                 </div>
-
-                                             </div>
-                                         </div>
-
-
-
-
-
-                                     </div>
-
-                                      <div class="modal fade" id="upload" role="dialog">
-                                          <div class="modal-dialog">
-
-                                              <!-- Modal content-->
-                                              <div class="modal-content">
-                                                  <div class="modal-header">
-                                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                      <h4 class="modal-title"><b>Upload Profile Picture</b></h4>
-                                                  </div>
-                                                  <div class="col-md-8">
-                                                      <form action="upload.php" method="post" id="loginForm" enctype="multipart/form-data">
-
-                                                          <div class="form-group">
-                                                              <label for="image">Select Image</label>
-                                                              <input type="file" class="form-control" id="image" name="image"/>
-                                                          </div>
-                                                          <button type="submit" class="btn-primary" id="upload">Upload</button>
-                                                          <input type="hidden" name="userid" value="<?php echo $_SESSION['user']['id'];?>">
-                                                          <input type="hidden" name="csrf" value="<?php ?>">
-                                                      </form>
-                                                  </div>
-
-                                                  <div class="modal-footer">
-
-                                                  </div>
-                                              </div>
-
-                                          </div>
-                                      </div>
-
-
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                        
-                    </div>
-                </div>
-                
-
-            </div>
-            
-
+           </div>
         </div>
 
 
-        
-
-    </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->

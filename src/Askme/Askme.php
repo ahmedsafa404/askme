@@ -119,6 +119,7 @@ class Askme
             $this->username = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['username']))));
             $this->email = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['email']))));
             $this->password = htmlspecialchars(htmlentities(stripslashes(strip_tags(md5(sha1($info['password']))))));
+            $point = 100;
 
             //If PHP 7 Exists then it random_bytes will work!
 
@@ -128,7 +129,7 @@ class Askme
 
             $confirm_code = rand();
 
-            $statement = $this->dbconnect->prepare("INSERT INTO users(firstname,lastname,username,email,password,confirmed,confirm_code) VALUES (:firstname,:lastname,:username,:email,:password,:confirmed,:confirm_code)");
+            $statement = $this->dbconnect->prepare("INSERT INTO users(firstname,lastname,username,email,password,confirmed,confirm_code,point) VALUES (:firstname,:lastname,:username,:email,:password,:confirmed,:confirm_code,:point)");
             $statement->bindParam(':firstname',$this->firstName);
             $statement->bindParam(':lastname',$this->lastName);
             $statement->bindParam(':username',$this->username);
@@ -136,6 +137,7 @@ class Askme
             $statement->bindParam(':password',$this->password);
             $statement->bindValue(':confirmed',0);
             $statement->bindParam(':confirm_code',$confirm_code);
+            $statement->bindParam(':point',$point);
 
 
             //Username Check
@@ -385,7 +387,7 @@ class Askme
 
     public function get_most_viewed_Question()
     {
-        $check = $this->dbconnect->prepare("SELECT * FROM `question` ORDER BY viewer DESC LIMIT 5");
+        $check = $this->dbconnect->prepare("SELECT * FROM `question` ORDER BY viewer DESC LIMIT 10");
         $check->execute();
 
         $get_Questions = $check->fetchAll(PDO::FETCH_ASSOC);
@@ -406,6 +408,56 @@ class Askme
 
 
         return $ask;
+    }
+
+    public function user_asked_Question($userID='')
+    {
+        $userID = htmlspecialchars(htmlentities(stripslashes(strip_tags($userID))));
+
+        $question = $this->dbconnect->prepare("SELECT COUNT(user_id) AS Ask FROM question WHERE user_id = ?");
+        $question->bindParam(1,$userID);
+
+        $question->execute();
+
+        $askedQuestion = $question->fetch(PDO::FETCH_ASSOC);
+
+        return $askedQuestion;
+    }
+
+    public function point_for_question($userID='')
+    {
+        $userID = htmlspecialchars(htmlentities(stripslashes(strip_tags($userID))));
+
+        $point = $this->dbconnect->prepare("UPDATE users SET point = point+10 WHERE id = ? ");
+        $point->bindParam(1,$userID);
+
+        $point->execute();
+
+    }
+
+    public function point_for_answer($userID='')
+    {
+        $userID = htmlspecialchars(htmlentities(stripslashes(strip_tags($userID))));
+
+        $point = $this->dbconnect->prepare("UPDATE users SET point = point+50 WHERE id = ? ");
+        $point->bindParam(1,$userID);
+
+        $point->execute();
+
+    }
+
+    public function user_answered($userID='')
+    {
+        $userID = htmlspecialchars(htmlentities(stripslashes(strip_tags($userID))));
+
+        $answer = $this->dbconnect->prepare("SELECT COUNT(user_id) AS Answer FROM comments WHERE user_id = ?");
+        $answer->bindParam(1,$userID);
+
+        $answer->execute();
+
+        $answerQuestion = $answer->fetch(PDO::FETCH_ASSOC);
+
+        return $answerQuestion;
     }
 
     public function Answer($info='')
@@ -439,6 +491,19 @@ class Askme
 
         return $getReply;
 
+    }
+
+    public function question_answer_count($questionID='')
+    {
+        $questionID = (int)htmlspecialchars(htmlentities(stripslashes(strip_tags($questionID))));
+
+        $answerCount = $this->dbconnect->prepare("SELECT COUNT(user_id) AS Answer_count FROM comments WHERE question_id = ?");
+        $answerCount->bindParam(1,$questionID);
+        $answerCount->execute();
+
+        $answerCount = $answerCount->fetch(PDO::FETCH_ASSOC);
+
+        return $answerCount;
     }
 
     public function search($question = '')

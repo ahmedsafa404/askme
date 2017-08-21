@@ -4,6 +4,7 @@ require_once ("vendor/autoload.php");
 use Askme\Askme\Askme;
 
 
+
 if(isset($_GET['id']))
 {
 
@@ -16,8 +17,13 @@ if(isset($_GET['id']))
 
 }
 
+    $userID = $_SESSION['user']['id'];
+
     $answer = new Askme();
     $getAnswer = $answer->getAnswer($id);
+
+    $question_answer_count = new Askme();
+    $question_answer_count = $question_answer_count->question_answer_count($id);
 
     $most_view_question = new Askme();
     $most_view_question->most_viewed_Question($id);
@@ -33,6 +39,8 @@ if(isset($_GET['id']))
 
     $most_viewed_question = new Askme();
     $most_viewed_question = $most_viewed_question->get_most_viewed_Question();
+
+
 
 
 ?>
@@ -77,7 +85,8 @@ if(isset($_GET['id']))
             <?php }?>
                 <hr>
 
-        <font color="#d2691e" size="4">Answers</font>
+        <font color="#d2691e" size="4" style="text-align: left">Answers</font>
+            <p style="text-align: right"> <?php echo $question_answer_count['Answer_count'];?> Answers</p>
                 <hr>
 
 

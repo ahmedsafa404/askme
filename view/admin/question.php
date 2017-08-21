@@ -1,12 +1,19 @@
 <?php  session_start();
 
-if(empty($_SESSION['user'])){
+if(empty($_SESSION['user']))
+{
     header('location:../../index.php');
     exit();
 }
 
 require_once ("../../vendor/autoload.php");
 use Askme\Askme\Askme;
+
+$userID = $_SESSION['user']['id'];
+
+$userInfo = new Askme();
+$info = $userInfo->userInfo($userID);
+
 
 ?>
 <!DOCTYPE html>
@@ -40,15 +47,6 @@ use Askme\Askme\Askme;
 
 </head>
 
-<?php
-
-$userId = $_SESSION['user']['id'];
-
-$Question = new Askme();
-$myQuestion = $Question->myAskedQuestion($userId);
-
-
-?>
 
 <body>
 
@@ -71,10 +69,10 @@ $myQuestion = $Question->myAskedQuestion($userId);
             <li><a href="../../index.php"><strong>Go To Home</strong></a></li>
 
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo strtoupper($_SESSION['user']['firstname']." ".$_SESSION['user']['lastname']);?> <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo $info['profile_pic']; ?>" alt="Profile Picture" class="img-circle" height="22" width="26"> <strong> <?php echo strtoupper($_SESSION['user']['firstname']." ".$_SESSION['user']['lastname']);?></strong> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        <a href="#"><img src="<?php echo $info['profile_pic']; ?>" alt="Profile Picture" class="img-circle" height="22" width="26"> Profile</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
@@ -91,19 +89,20 @@ $myQuestion = $Question->myAskedQuestion($userId);
             <ul class="nav navbar-nav side-nav">
                 <li class="active">
                     <a href="index.php">
+                        <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+                        My Activity</a>
+                </li>
+                <li class="">
+                    <a href="profile.php">
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                         User Profile</a>
                 </li>
-                <li class="active">
+                <li class="">
                     <a href="question.php">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         Questions</a>
                 </li>
-                <li class="">
-                    <a href="activity.php">
-                        <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
-                        My Activity</a>
-                </li>
+
 
             </ul>
         </div>
@@ -129,7 +128,7 @@ $myQuestion = $Question->myAskedQuestion($userId);
                 </div>
             </div>
 
-            <div class="col-md-5">
+            <div class="col-md-8">
                 <h4><font color="green">Add Question</font></h4>
             <form method="post" action="add_question.php">
                 <div class="form-group">
@@ -146,20 +145,7 @@ $myQuestion = $Question->myAskedQuestion($userId);
                 <input type="hidden" name="userid" value="<?php echo $_SESSION['user']['id'];?>">
             </form>
             </div>
-            <div class="col-md-offset-7">
-                <h3><strong>My Asked Question</strong></h3>
-                <hr>
-                <div class="col-md-5">
 
-                    <?php
-
-                    foreach ($myQuestion as $question => $item)
-                    { ?>
-                    <h4><strong><?php echo $item['question'];?></strong></h4>
-                    <p><?php echo $item['description'];?></p>
-                        <hr>
-                     <?php } ?>
-            </div>
 
 
 
