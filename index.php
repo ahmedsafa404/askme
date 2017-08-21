@@ -34,7 +34,7 @@ $most_viewed_question = $most_viewed_question->get_most_viewed_Question();
 
             ?>
 
-            <li><a href="../../Blog%20Project/askme/view/admin/question.php?username=<?php echo htmlspecialchars(htmlentities(stripslashes(strip_tags($_SESSION['user']['username'])))); ?>"> <span class="glyphicon glyphicon-pencil"></span>Ask Question</a></li>
+            <li><a href="view/admin/question.php?username=<?php echo htmlspecialchars(htmlentities(stripslashes(strip_tags($_SESSION['user']['username'])))); ?>"> <span class="glyphicon glyphicon-pencil"></span>Ask Question</a></li>
 
         <?php } ?>
 

@@ -69,7 +69,7 @@ $info = $userInfo->userInfo($userID);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Ask++</a>
+                <a class="navbar-brand" href="../../index.php">Ask++</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">

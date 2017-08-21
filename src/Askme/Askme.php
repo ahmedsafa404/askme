@@ -96,7 +96,7 @@ class Askme
                 session_start();
                 $_SESSION['user'] = $info;
 
-                header("location:../../Blog%20Project/askme/view/admin/index.php");
+                header("location:../../askme/view/admin/index.php");
 
 
             }
@@ -255,7 +255,7 @@ class Askme
                 $image->bindParam(2,$userId);
                 $image->execute();
 
-                $message = "<label>Profile Picture Uploaded</label>";
+                header("location:index.php");
             }
         }
 

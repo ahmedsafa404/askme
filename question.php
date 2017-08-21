@@ -97,7 +97,7 @@ if(isset($_GET['id']))
 
 
 
-                        <h5><strong><img src="<?php echo $value['profile_pic'];?>" height="50" class="img-circle" width="50">
+                        <h5><strong><img src=/askme/view/admin/<?php echo $value['profile_pic'];?> height="50" class="img-circle" width="50">
                                 <?php  echo $value['firstname']." ".$value['lastname'];?></strong></h5>
 
                         <p><?php echo $value['answer'];?></p>

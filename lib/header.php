@@ -175,7 +175,7 @@ session_start();
 
                     ?>
 
-                    <li><a href="../../Blog%20Project/askme/view/admin/index.php?username=<?php echo htmlspecialchars(htmlentities($_SESSION['user']['username'])); ?>"> <span class="glyphicon glyphicon-log-out"></span>Dashboard</a></li>
+                    <li><a href="../../askme/view/admin/index.php?username=<?php echo htmlspecialchars(htmlentities($_SESSION['user']['username'])); ?>"> <span class="glyphicon glyphicon-log-out"></span>Dashboard</a></li>
 
                     <?php } ?>
 
