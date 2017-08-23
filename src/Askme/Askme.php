@@ -69,6 +69,7 @@ class Askme
     public function login($info = "")
     {
 
+<<<<<<< HEAD
             $username = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['username']))));
             $password = htmlspecialchars(htmlentities(stripslashes(strip_tags(md5(sha1($info['password']))))));
 
@@ -78,22 +79,53 @@ class Askme
 
             $statement->bindParam(1,$username);
             $statement->bindParam(2,$password);
+=======
+            $this->email = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['email']))));
+            $this->password = htmlspecialchars(htmlentities(stripslashes(strip_tags(md5(sha1($info['password']))))));
+
+
+
+            $statement = $this->dbconnect->prepare("SELECT * FROM users WHERE email= ? AND password= ? LIMIT 1");
+
+            $statement->bindParam(1,$this->email);
+            $statement->bindParam(2,$this->password);
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
             $statement->execute();
 
 
 
             if($statement->rowCount() == 1 )
             {
+<<<<<<< HEAD
                 $info = $statement->fetch(PDO::FETCH_ASSOC);
+=======
+
+
+                $info = $statement->fetch(PDO::FETCH_ASSOC);
+
+                if($info['confirmed'] == 0 )
+                {
+                    die("Your account haven't activated.Please check email & activate your account first.");
+                }
+
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                 session_start();
                 $_SESSION['user'] = $info;
 
                 header("location:../../askme/view/admin/index.php");
 
+<<<<<<< HEAD
             }
             else
             {
                 header("location:../../askme/index.php?error=1");
+=======
+
+            }
+            else
+            {
+                $message = "<label>Invalid Email or Password</label>";
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
             }
 
 
@@ -104,12 +136,21 @@ class Askme
     public function registration($info = "")
     {
 
+<<<<<<< HEAD
             $firstName = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['firstName']))));
             $lastName = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['lastName']))));
 
             $username = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['username']))));
             $email = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['email']))));
             $password = htmlspecialchars(htmlentities(stripslashes(strip_tags(md5(sha1($info['password']))))));
+=======
+
+            $this->firstName = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['firstName']))));
+            $this->lastName = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['lasttName']))));
+            $this->username = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['username']))));
+            $this->email = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['email']))));
+            $this->password = htmlspecialchars(htmlentities(stripslashes(strip_tags(md5(sha1($info['password']))))));
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
             $point = 100;
 
             //If PHP 7 Exists then it random_bytes will work!
@@ -121,16 +162,25 @@ class Askme
             $confirm_code = rand();
 
             $statement = $this->dbconnect->prepare("INSERT INTO users(firstname,lastname,username,email,password,confirmed,confirm_code,point) VALUES (:firstname,:lastname,:username,:email,:password,:confirmed,:confirm_code,:point)");
+<<<<<<< HEAD
             $statement->bindParam(':firstname',$firstName);
             $statement->bindParam(':lastname',$lastName);
             $statement->bindParam(':username',$username);
             $statement->bindParam(':email',$email);
             $statement->bindParam(':password',$password);
+=======
+            $statement->bindParam(':firstname',$this->firstName);
+            $statement->bindParam(':lastname',$this->lastName);
+            $statement->bindParam(':username',$this->username);
+            $statement->bindParam(':email',$this->email);
+            $statement->bindParam(':password',$this->password);
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
             $statement->bindValue(':confirmed',0);
             $statement->bindParam(':confirm_code',$confirm_code);
             $statement->bindParam(':point',$point);
 
 
+<<<<<<< HEAD
             //Check Exists
             $checkExist = $this->dbconnect->prepare("SELECT username,email FROM users WHERE username = ? LIMIT 1");
             $checkExist->bindParam(1,$username);
@@ -141,6 +191,30 @@ class Askme
             if($checkExist->rowCount()==1)
             {
                 echo "<font color='red' size='4'>Username already exists.</font>";
+=======
+            //Username Check
+            $checkUsernameExist = $this->dbconnect->prepare("SELECT username FROM users WHERE username = ? LIMIT 1");
+            $checkUsernameExist->bindParam(1,$this->username);
+
+            $checkUsernameExist->execute();
+
+            //Email Check
+            $checkEmailExist = $this->dbconnect->prepare("SELECT email FROM users WHERE email = ? LIMIT 1");
+            $checkEmailExist->bindParam(1,$this->email);
+
+            $checkEmailExist->execute();
+
+
+
+            if($checkUsernameExist->rowCount()==1)
+            {
+                $echo = "Username already exists";
+                return;
+            }
+            elseif($checkEmailExist->rowCount()==1)
+            {
+                echo  "Email already used with another account";
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                 return;
             }
 
@@ -155,7 +229,11 @@ class Askme
             mail($this->email,"Account Activation",$message,"From:support@askme.com");
 
 
+<<<<<<< HEAD
             echo "<font color='green' size='4'>Registration Complete.Please Activate your email.A code has been sent to your email.</font>";
+=======
+            echo "Registration Complete.Please Activate your email.A code has been sent to your email.";
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 
 
 
@@ -165,6 +243,10 @@ class Askme
     public function update($info='')
     {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
         $this->firstName = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['firstname']))));
         $this->lastName = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['lastname']))));
         $this->location = htmlspecialchars(htmlentities(stripslashes(strip_tags($info['location']))));
@@ -182,7 +264,15 @@ class Askme
 
         $statement->execute();
 
+<<<<<<< HEAD
         header("location:profile.php");
+=======
+        header("location:index.php");
+
+        $message = "<label>Profile Updated</label>";
+
+
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 
     }
 
@@ -276,7 +366,11 @@ class Askme
         }
         else
         {
+<<<<<<< HEAD
             die("<font color='red' size='4'>Error to save Data</font>");
+=======
+            die("Error to save Data");
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
         }
 
     }
@@ -447,7 +541,11 @@ class Askme
 
         $postAnswer->execute();
 
+<<<<<<< HEAD
         echo "<font color='#228b22' size='4'>Thank you for your answer</font>";
+=======
+        echo "Thank you for your answer";
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 
     }
 
@@ -461,6 +559,11 @@ class Askme
         $answer->execute();
 
         $getReply = $answer->fetchAll(PDO::FETCH_ASSOC);
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
         return $getReply;
 
     }
@@ -481,8 +584,16 @@ class Askme
     public function search($question = '')
     {
         $question = htmlspecialchars(htmlentities(stripslashes(strip_tags($question))));
+<<<<<<< HEAD
         $search = $this->dbconnect->prepare("SELECT id,question,description FROM question WHERE question LIKE '%$question%' LIMIT 10");
         $search->execute();
+=======
+        $search = $this->dbconnect->prepare("SELECT id,question,description FROM question WHERE question OR description LIKE '%?%'");
+        $search->bindParam(1,$question);
+
+        $search->execute();
+
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
         $search = $search->fetchAll(PDO::FETCH_ASSOC);
 
         return $search;

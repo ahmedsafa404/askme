@@ -24,7 +24,10 @@ $most_viewed_question = $most_viewed_question->get_most_viewed_Question();
 ?>
 
 <div class="container">
+<<<<<<< HEAD
 
+=======
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
     <div class="col-md-8">
 
 
@@ -55,10 +58,14 @@ $most_viewed_question = $most_viewed_question->get_most_viewed_Question();
                         </div>
                     <div class="panel-body">
                         <p>
+<<<<<<< HEAD
                             <strong>Posted at : <?php
                                 $getTime = strtotime($item['created_at']);
                                echo $time = date('  F j, Y, h:i:s A',$getTime);
                                 ?></strong>
+=======
+                            <strong>Posted at : <?php echo $item['created_at'];?></strong>
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                         </p>
 
                         <p>
@@ -98,6 +105,7 @@ $most_viewed_question = $most_viewed_question->get_most_viewed_Question();
             </ul>
         </nav>
     </div>
+<<<<<<< HEAD
     <?php
         if (!isset($_SESSION['user']))
         {
@@ -106,6 +114,43 @@ $most_viewed_question = $most_viewed_question->get_most_viewed_Question();
         }
     ?>
     <?php require_once ('lib/sidebar.php');?>
+=======
+    <div class="col-md-4">
+
+        <h2><font color="#d2691e">Most Viewed Question</font></h2>
+        <div class="">
+            <ul class="list-group">
+
+                <?php
+                foreach ($most_viewed_question as $most => $view) { ?>
+                    <li class="list-group-item">
+                        <div class="">
+                            <a href="question.php?id=<?php echo htmlspecialchars(htmlentities(stripslashes(strip_tags($view['id']))));?>"><?php echo $view['question'];?></a>
+
+                        </div>
+                    </li>
+
+                    <?php }?>
+
+
+            </ul>
+        </div>
+
+
+        <h2><font color="green">Website Status</font></h2>
+        <hr>
+        <div class="count">
+            <font color="black" size="2"><strong>Total Question :</strong></font><?php echo $question_count['Question'];?>
+            <br>
+            <font color="black" size="2"><strong>Total Answer :</strong></font><?php echo $answer_count['Answer'];?>
+            <br>
+            <font color="black" size="2"><strong>Total User :</strong></font><?php echo $user_count['User'];?>
+
+        </div>
+
+
+    </div>
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 </div>
 
 

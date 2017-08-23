@@ -99,13 +99,38 @@ $myQuestion = $Question->myAskedQuestion($userID);
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+<<<<<<< HEAD
             <?php require_once ("lib/sidebar.php");?>
+=======
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="index.php">
+                            <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+                            My Activity</a>
+                    </li>
+                    <li class="">
+                        <a href="profile.php">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
+                        User Profile</a>
+                    </li>
+                    <li class="">
+                        <a href="question.php">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            Questions</a>
+                    </li>
+
+
+                </ul>
+            </div>
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
             <!-- /.navbar-collapse -->
         </nav>
 
         <div id="page-wrapper">
 
             <div class="container-fluid">
+<<<<<<< HEAD
                 <?php
                     if($info['confirmed'] == 0)
                     {
@@ -114,6 +139,8 @@ $myQuestion = $Question->myAskedQuestion($userID);
                     <strong><font color="red" size="4">Your account isn't activate.Please active your account.</font></strong>
                 </div>
             <?php }?>
+=======
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 
             <div class="col-md-12" style="font-family: "Arial Black", arial-black">
                 <font color="#008b8b" size="6"><strong>User Activity</strong></font>
@@ -183,7 +210,11 @@ $myQuestion = $Question->myAskedQuestion($userID);
                 <div class="col-md-12">
 
                     <div class="col-md-12">
+<<<<<<< HEAD
                         <h3 style="color: #0f74a8;font: "Arial Black", arial-black"><strong>My Asked Question</strong></h3>
+=======
+                        <h3><strong>My Asked Question</strong></h3>
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                         <hr>
                         <div class="col-md-8">
 

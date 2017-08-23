@@ -8,7 +8,11 @@ session_start();
 
 
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en" xmlns="http://www.w3.org/1999/html">
+=======
+<html lang="en">
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 <head>
     <title>Ask Question Get Answer</title>
     <meta charset="utf-8">
@@ -59,7 +63,11 @@ session_start();
                 <ul class="nav navbar-nav navbar-right">
                     <form class="navbar-form navbar-left" action="search.php" method="get">
                         <div class="input-group">
+<<<<<<< HEAD
                             <input type="text" name="q" class="form-control" size="50" placeholder="Search">
+=======
+                            <input type="text" name="q" class="form-control" placeholder="Search">
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                             <div class="input-group-btn">
                                 <button class="btn btn-primary" name="" type="submit">
                                     <i class="glyphicon glyphicon-search"></i>
@@ -77,8 +85,102 @@ session_start();
 
                     ?>
 
+<<<<<<< HEAD
                     <?php } ?>
 
+=======
+                    <li><a class="cd-signin" href="#" data-toggle="modal" data-target="#login">Login</a></li>
+                    <li><a class="cd-signup" href="#" data-toggle="modal" data-target="#registration">Signup</a></li>
+
+                    <?php } ?>
+
+                    <!-- Modal for Login-->
+                    <div class="modal fade" id="login" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title"><b>Login</b></h4>
+                                </div>
+                                <div class="col-md-8">
+                                    <form action="login.php" method="post" id="loginForm">
+
+                                        <div class="form-group">
+                                            <input type="hidden" name="login_token" value="">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+
+                                        </div>
+                                        <button type="submit" class="btn-success" id="login">Login</button>
+
+                                    </form>
+
+                                </div>
+
+                                <div class="modal-footer">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--Modal for Registration-->
+                    <div class="modal fade" id="registration" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title"><b>Registration</b></h4>
+                                </div>
+                                <div class="col-md-8">
+                                    <form id="registration_form" action="registration.php" method="post">
+
+                                        <div class="form-group">
+                                            <label for="firstName">First Name</label>
+                                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lastName">Last Name</label>
+                                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="username">Choose username</label>
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                                        </div>
+                                        <button type="submit" class="btn-primary" id="signup">Signup</button>
+                                        <input type="hidden" name="csrf_token" value="">
+                                        <div class="register" style="color: green"></div>
+                                    </form>
+
+
+                                </div>
+
+                                <div class="modal-footer">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                     <?php
                         if(isset($_SESSION['user']))
                         {
@@ -98,4 +200,7 @@ session_start();
     </div>
 
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273

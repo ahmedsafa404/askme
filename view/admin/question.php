@@ -85,13 +85,38 @@ $info = $userInfo->userInfo($userID);
             </li>
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+<<<<<<< HEAD
         <?php require_once ("lib/sidebar.php");?>
+=======
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li class="active">
+                    <a href="index.php">
+                        <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+                        My Activity</a>
+                </li>
+                <li class="">
+                    <a href="profile.php">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        User Profile</a>
+                </li>
+                <li class="">
+                    <a href="question.php">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        Questions</a>
+                </li>
+
+
+            </ul>
+        </div>
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
         <!-- /.navbar-collapse -->
     </nav>
 
     <div id="page-wrapper">
 
         <div class="container-fluid">
+<<<<<<< HEAD
             <?php
             if($info['confirmed'] == 0)
             {
@@ -100,6 +125,9 @@ $info = $userInfo->userInfo($userID);
                     <strong><font color="red" size="4">Your account isn't activate.Please active your account.</font></strong>
                 </div>
             <?php }?>
+=======
+
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
@@ -108,12 +136,17 @@ $info = $userInfo->userInfo($userID);
                         <small>Profile</small>
                     </h1>
                     <ol class="breadcrumb">
+<<<<<<< HEAD
                         <li class="">
+=======
+                        <li class="active">
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Questions
                         </li>
                     </ol>
                 </div>
             </div>
+<<<<<<< HEAD
             <?php
             if($info['confirmed'] == 1 )
             {
@@ -122,6 +155,12 @@ $info = $userInfo->userInfo($userID);
             <div class="col-md-8">
                 <h4><font color="green">Add Question</font></h4>
             <form method="post" id="question" action="add_question.php">
+=======
+
+            <div class="col-md-8">
+                <h4><font color="green">Add Question</font></h4>
+            <form method="post" action="add_question.php">
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                 <div class="form-group">
                     <label for="title">Question Title</label>
                     <input type="text" class="form-control" id="title" name="title" placeholder="Question Title" required>
@@ -132,12 +171,19 @@ $info = $userInfo->userInfo($userID);
                     <textarea name="description" rows="8" cols="60" id="description" class="form-control" placeholder="Write in detail about your question" required></textarea>
                 </div>
 
+<<<<<<< HEAD
                 <button type="submit" id="submit" class="btn btn-success">Submit Question</button>
                 <input type="hidden" name="userid" value="<?php echo $_SESSION['user']['id'];?>">
             </form>
 
             </div>
             <?php }?>
+=======
+                <button type="submit" id="question" class="btn btn-success">Submit Question</button>
+                <input type="hidden" name="userid" value="<?php echo $_SESSION['user']['id'];?>">
+            </form>
+            </div>
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 
 
 
@@ -154,9 +200,12 @@ $info = $userInfo->userInfo($userID);
 
 
 </div>
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 <!-- /#wrapper -->
 
 <!-- jQuery -->

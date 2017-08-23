@@ -39,6 +39,7 @@ kbd {
 .loginmodal-container{
     background: #f3f3f3;
     padding: 30px;
+<<<<<<< HEAD
 }
 .counter {
     background-color: #fcd141;
@@ -48,4 +49,6 @@ kbd {
     width: 20%;
     height: 20%;
     text-align: center;
+=======
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 }

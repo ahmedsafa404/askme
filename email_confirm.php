@@ -4,6 +4,12 @@ require_once ("vendor/autoload.php");
 use Askme\Askme\Askme;
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 $username = htmlspecialchars(htmlentities(stripslashes(strip_tags($_GET['username']))));
 $confirm_code = htmlspecialchars(htmlentities(stripslashes(strip_tags($_GET['confirm_code']))));
 

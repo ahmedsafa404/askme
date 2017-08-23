@@ -38,7 +38,10 @@ use Askme\Askme\Askme;
     <!-- User Style -->
 
     <link rel="stylesheet" type="text/css" href="css/user.css">
+<<<<<<< HEAD
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+=======
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 
 </head>
 
@@ -90,9 +93,35 @@ $info = $userInfo->userInfo($userID);
                 </ul>
             </li>
         </ul>
+<<<<<<< HEAD
 
         <?php require_once ("lib/sidebar.php");?>
 
+=======
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li class="active">
+                    <a href="index.php">
+                        <span class="glyphicon glyphicon-certificate" aria-hidden="true"></span>
+                        My Activity</a>
+                </li>
+                <li class="">
+                    <a href="profile.php">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        User Profile</a>
+                </li>
+                <li class="">
+                    <a href="question.php">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        Questions</a>
+                </li>
+
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
     </nav>
 
     <div id="page-wrapper">
@@ -100,6 +129,7 @@ $info = $userInfo->userInfo($userID);
         <div class="container-fluid">
 
             <!-- Page Heading -->
+<<<<<<< HEAD
             <?php
             if($info['confirmed'] == 0)
             {
@@ -112,14 +142,23 @@ $info = $userInfo->userInfo($userID);
             <div class="row">
                 <div class="col-lg-12">
 
+=======
+            <div class="row">
+                <div class="col-lg-12">
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                     <h1 class="page-header">
                         <?php echo $_SESSION['user']['firstname']." ".$_SESSION['user']['lastname']."'s";?>
                         <small>Profile</small>
                     </h1>
                     <ol class="breadcrumb">
+<<<<<<< HEAD
                         <li class="">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile
 
+=======
+                        <li class="active">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                         </li>
                     </ol>
                 </div>
@@ -129,7 +168,11 @@ $info = $userInfo->userInfo($userID);
             <div class="row">
                 <div class="col-lg-12">
                     <div class="alert alert-info alert-dismissable">
+<<<<<<< HEAD
 
+=======
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                         <i class="fa fa-info-circle"></i>  <strong>Welcome <?php echo $_SESSION['user']['firstname']." ".$_SESSION['user']['lastname'];?></strong>
                     </div>
                 </div>
@@ -229,7 +272,10 @@ $info = $userInfo->userInfo($userID);
                                                     <input type="hidden" name="csrf" value="<?php ?>">
                                                     <input type="hidden" name="userid" value="<?php echo $_SESSION['user']['id'];?>">
                                                 </form>
+<<<<<<< HEAD
                                                 <div class="edit_profile"></div>
+=======
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                                             </div>
 
                                             <div class="modal-footer">
@@ -266,7 +312,10 @@ $info = $userInfo->userInfo($userID);
                                                 <input type="hidden" name="userid" value="<?php echo $_SESSION['user']['id'];?>">
                                                 <input type="hidden" name="csrf" value="<?php ?>">
                                             </form>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
                                         </div>
 
                                         <div class="modal-footer">
@@ -293,9 +342,15 @@ $info = $userInfo->userInfo($userID);
 </div>
 
 
+<<<<<<< HEAD
 </div>
 
 
+=======
+
+
+</div>
+>>>>>>> a08234425a1ce3dca45d2219f90299990a0e0273
 <!-- /#wrapper -->
 
 <!-- jQuery -->
