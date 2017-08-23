@@ -1,0 +1,51 @@
+logo{
+    margin-left: 40px;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: none;
+}
+a:active, a:hover {
+    text-decoration: none;
+}
+.footer-bottom {
+    background: #000000;
+    color: #ffffff;
+    padding-top: 10px;
+}
+footer{
+    background: rgb(204, 204, 204);
+	padding-top: 30px;
+}
+.list-group-item p {
+    font-size: 13px;
+}
+.user{
+    background-color:#337ab7;
+    color:#ffffff;
+}
+.user  span {color:#ffffff; text-align: inline;}
+.user p {color:#ffffff;}
+.panel-heading a {
+	color: #fff;
+}
+kbd {
+    background-color: #27ae60;
+}
+.navbar-default .navbar-nav>li>a {
+    color: black;
+}
+.loginmodal-container{
+    background: #f3f3f3;
+    padding: 30px;
+}
+.counter {
+    background-color: #fcd141;
+    border-radius: 50%;
+    padding: 10px 8px 15px 8px;
+    margin-top: 30px;
+    width: 20%;
+    height: 20%;
+    text-align: center;
+}
